@@ -24,7 +24,7 @@ const myWorker = createBackgroundWorker({ workerPath: './worker.js' }).on(
 function App() {
   const [eventName, setEventName] = React.useState('greeting');
   const sendMessage = () => {
-    myWorker.sendEvent(eventName);
+    myWorker.send(eventName);
   };
   return (
     <>

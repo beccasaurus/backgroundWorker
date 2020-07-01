@@ -101,7 +101,7 @@ export class BackgroundWorker {
     return this;
   }
 
-  sendEvent(eventName: string, data?: any) {
+  send(eventName: string, data?: any) {
     this._postMessage({
       eventName,
       data,
