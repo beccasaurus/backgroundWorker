@@ -66,11 +66,12 @@ class WorkerBase {
 
   onmessage(e: MessageEvent) {
     const eventName = e.data?.eventName;
+    const payload = e.data?.data;
 
     const messageParams: MessageHandlerParams = {
       eventName,
       messageEvent: e,
-      data: e.data,
+      data: payload,
       reply: this.send,
     };
 

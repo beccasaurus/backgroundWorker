@@ -49,12 +49,13 @@ var WorkerBase = /** @class */ (function () {
         return this;
     };
     WorkerBase.prototype.onmessage = function (e) {
-        var _a;
+        var _a, _b;
         var eventName = (_a = e.data) === null || _a === void 0 ? void 0 : _a.eventName;
+        var payload = (_b = e.data) === null || _b === void 0 ? void 0 : _b.data;
         var messageParams = {
             eventName: eventName,
             messageEvent: e,
-            data: e.data,
+            data: payload,
             reply: this.send
         };
         if (this._viewEveryMessageHandler)
