@@ -6,20 +6,13 @@ const appState = {
   workerRunning: false,
 };
 
-const myWorker = createBackgroundWorker({ workerPath: './worker.js' }).on(
-  'greeting',
-  ({ data }) => {
+const myWorker = createBackgroundWorker('./worker.js')
+  .on('greeting', ({ data }) => {
     console.log('The background worker replied with this:', data);
-  }
-);
-
-// .onRuntimeError(({ message }) => {
-//   console.log(`Another bummer, runtime error yo: ${message}`);
-// });
-
-// .onMessageMissingEventName(({ data }) => {
-//   console.log(`Oh, what a bummer that the event name is not here: ${JSON.stringify(data)}`);
-// });
+  })
+  .onError(({ errorMessage }) => {
+    console.log(`Ohgoodness Jeez ERROR ${errorMessage}`);
+  });
 
 function App() {
   const [eventName, setEventName] = React.useState('greeting');

@@ -46,6 +46,9 @@ worker.on('startFetchingItems', async ({ reply }) => {
   reply('fetchedItems', items);
 });
 
+onmessage = e => worker.onmessage(e);
+onerror = (e: ErrorEvent) => worker.onerror(e);
+
 worker.send('workerStarted');
 ```
 

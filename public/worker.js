@@ -1,19 +1,15 @@
-console.log('Hi from worker! Someone started me :)');
-// onmessage = (e: MessageEvent) => {
-//   console.log('Hi from the worker, I just got a message!', JSON.stringify(e.data));
-//   postMessage({ eventName: 'reply', data: 'Hi this is my reply' }, undefined);
-//   postMessage('I have no event name', undefined);
-// };
 var exports = {};
 importScripts('./backgroundWorker.js');
 var configureWorker = exports.configureWorker;
-var worker = configureWorker(postMessage).on('greeting', function () {
-    // reply(
-    //   'greeting',
-    //   `Well, hello back! I am the worker and I'm here to say: I got your message: ${JSON.stringify(
-    //     data
-    //   )}`
-    // );
+var worker = configureWorker(function (message) { return postMessage(message, undefined); })
+    .on('greeting', function () {
     console.log('Hey I guess you called "greeting"...');
+})
+    .onError(function (_a) {
+    var errorMessage = _a.errorMessage;
+    console.log("Caught My Own Error on the Worker side of things! " + errorMessage);
 });
-onmessage = worker.onmessage;
+onmessage = function (e) { return worker.onmessage(e); };
+onerror = function (e) { return worker.onerror(e); };
+worker.send('greeting', 'Hello there from worker');
+worker.send('dsfdfsdfdsfdsfsd', 'and this too');
