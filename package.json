@@ -7,7 +7,7 @@
   "author": "Rebecca Taylor",
   "license": "Apache-2.0",
   "scripts": {
-    "build-workers": "tsc public/dbWorker.ts",
+    "build-worker": "tsc public/*.ts",
     "storybook": "start-storybook -s public -p 3001"
   },
   "dependencies": {
