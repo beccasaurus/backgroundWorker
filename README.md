@@ -28,13 +28,9 @@ worker.start();
 From your worker script:
 
 ```ts
-var exports: any = {};
-
 importScripts('./backgroundWorkers');
 
-const { configureWorker } = exports;
-
-const worker = configureWorker((message: any) => postMessage(message, undefined));
+const worker = exports.configureWorker((message: any) => postMessage(message, undefined));
 
 worker.on('startFetchingItems', async ({ reply }) => {
   console.log('Aw, jeez, I guess I should start fetching items now...');
