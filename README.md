@@ -48,3 +48,9 @@ worker.on('startFetchingItems', async ({ reply }) => {
 
 worker.send('workerStarted');
 ```
+
+---
+
+To make it work, put `backgroundWorkers.js` into your `public/` where you can import it from your `worker.js` and put `backgroundWorkers.ts` wherever you like.
+
+I might find a way to package this, but for now, just copy/paste 🧐
