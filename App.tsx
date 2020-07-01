@@ -7,12 +7,14 @@ const appState = {
 };
 
 const myWorker = createBackgroundWorker('./worker.js')
-  .on('greeting', ({ data }) => {
+  .on('greeting', ({ data }: { data: any }) => {
     console.log('The background worker replied with this:', data);
   })
-  .onError(({ errorMessage }) => {
+  .onError(({ errorMessage }: { errorMessage: string }) => {
     console.log(`Ohgoodness Jeez ERROR ${errorMessage}`);
   });
+
+myWorker.start();
 
 function App() {
   const [eventName, setEventName] = React.useState('greeting');
