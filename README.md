@@ -11,7 +11,7 @@ This is mine.
 From your application:
 
 ```ts
-import { createBackgroundWorker } from '../public/backgroundWorkers'
+import { createBackgroundWorker } from '../public/backgroundWorker'
 
 const worker = createBackgroundWorker('./worker.js')'
 
@@ -28,7 +28,7 @@ worker.start();
 From your worker script:
 
 ```ts
-importScripts('./backgroundWorkers');
+importScripts('./backgroundWorker');
 
 const worker = exports.configureWorker((message: any) => postMessage(message, undefined));
 
